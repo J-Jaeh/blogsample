@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Getter
 @Entity
 @NoArgsConstructor
-public class Memo extends Timestamped {
+public class Post extends Timestamped {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
