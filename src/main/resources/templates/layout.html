@@ -10,69 +10,14 @@
   <script>
     $(document).ready(function () {
       // HTML 문서를 로드할 때마다 실행합니다.
-      getMessages();
     })
 
     // 메모 하나를 HTML로 만들어서 body 태그 내 원하는 곳에 붙입니다.
-    function addHTML(id, username, contents, modifiedAt) {
-      let tempHtml = makeMessage(id, username, contents, modifiedAt);
-      $('#cards-box').append(tempHtml);
-    }
 
-    function makeMessage(id, username, contents, modifiedAt) {
-      return `<div class="card">
-                        <!-- date/username 영역 -->
-                        <div class="metadata">
-                            <div class="date">
-                                ${modifiedAt}
-                            </div>
-                            <div id="${id}-username" class="username">
-                                ${username}
-                            </div>
-                        </div>
-                        <!-- contents 조회/수정 영역-->
-                        <div class="contents">
-                            <div id="${id}-contents" class="text">
-                                ${contents}
-                            </div>
-                            <div id="${id}-editarea" class="edit">
-                                <textarea id="${id}-textarea" class="te-edit" name="" id="" cols="30" rows="5"></textarea>
-                            </div>
-                        </div>
-                        <!-- 버튼 영역-->
-                        <div class="footer">
-                            <img id="${id}-edit" class="icon-start-edit" src="/images/edit.png" alt="" onclick="editPost('${id}')">
-                            <img id="${id}-delete" class="icon-delete" src="/images/delete.png" alt="" onclick="deleteOne('${id}')">
-                            <img id="${id}-submit" class="icon-end-edit" src="/images/done.png" alt="" onclick="submitEdit('${id}')">
-                        </div>
-                    </div>`;
-    }
+
 
     // 사용자가 내용을 올바르게 입력하였는지 확인합니다.
-    function isValidContents(contents) {
-      if (contents == '') {
-        alert('내용을 입력해주세요');
-        return false;
-      }
-      if (contents.trim().length > 140) {
-        alert('공백 포함 140자 이하로 입력해주세요');
-        return false;
-      }
-      return true;
-    }
 
-    // 익명의 username을 만듭니다.
-    function genRandomName(length) {
-      let result = '';
-      let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-      let charactersLength = characters.length;
-      for (let i = 0; i < length; i++) {
-        let number = Math.random() * charactersLength;
-        let index = Math.floor(number);
-        result += characters.charAt(index);
-      }
-      return result;
-    }
     // 메모를 생성합니다.
     function writePost() {
       // 1. 작성한 메모를 불러옵니다.

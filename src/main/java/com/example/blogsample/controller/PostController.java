@@ -1,7 +1,7 @@
 package com.example.blogsample.controller;
 
 
-//import com.example.blogsample.dto.PostResponseDto;
+import com.example.blogsample.dto.PostResponseDto;
 import com.example.blogsample.dto.PostSaveRequestDto;
 //import com.example.blogsample.dto.PostUpdateRequestDto;
 import com.example.blogsample.entity.Post;
@@ -17,7 +17,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PostController {
     private final PostService postService;
-    private  final PostRepository postRepository;
+    private final PostRepository postRepository;
 
     @GetMapping("/api")
     public ModelAndView home() {
@@ -28,21 +28,33 @@ public class PostController {
     public Post createPost(@RequestBody PostSaveRequestDto requestDto) {
         return postService.createPost(requestDto);
     }
-    @GetMapping("/")
-    public ModelAndView list(Model model){
-        List<Post> postList = this.postRepository.findAll();
-        return new ModelAndView("index");
+
+    @GetMapping("/api/memos")
+    public List<Post> getPost() {
+
+        return postService.getPost();
     }
-}
+
 
 
  /*   @PutMapping("/api/posts/{id}")
     public Long update(@PathVariable Long id, @RequestBody PostUpdateRequestDto requestDto){
         return postService.update(id,requestDto);
+    }*/
+   /* @GetMapping("/api/posts/{id}")
+    public List<Post> getContent(){
+
+        return postService.getPost();
+    }*/
+
+    @GetMapping(value = "/api/post/{id}")
+    public ModelAndView detail(@PathVariable("id") Integer id) { //이방법이 아닌가보다 ... 파라미터가없으면 되는데 있으니까 안되네 물어봐야겠다.
+        return new ModelAndView("post_detail");
+
     }
-    @GetMapping("/api/posts/{id}")
-    public PostResponseDto findById (@PathVariable Long id){
-        return postService.findById(id);
+
+    @GetMapping("/api/post")
+    public PostResponseDto getPosting(@RequestParam Long id) {
+        return postService.getPosting(id);
     }
 }
-*/

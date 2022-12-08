@@ -1,4 +1,4 @@
-/*package com.example.blogsample.dto;
+package com.example.blogsample.dto;
 
 import com.example.blogsample.entity.Post;
 import lombok.Getter;
@@ -20,4 +20,4 @@ public class PostResponseDto {
     }
 }
 
- */
+

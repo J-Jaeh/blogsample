@@ -7,6 +7,8 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" th:href="@{/bootstrap.min.css}">
+
     <script>
         $(document).ready(function () {
             // HTML 문서를 로드할 때마다 실행합니다.
@@ -38,38 +40,25 @@
 
 
         // 메모 하나를 HTML로 만들어서 body 태그 내 원하는 곳에 붙입니다.
-        function addHTML(id, username, contents, modifiedAt) {
-            let tempHtml = makeMessage(id, username, contents, modifiedAt);
+        function addHTML(id, username, title, modifiedAt) {
+            let tempHtml = makeMessage(id, username, title, modifiedAt);
             $('#cards-box').append(tempHtml);
         }
 
-        function makeMessage(id, username, contents, modifiedAt) {
-            return `<div class="card">
+        function makeMessage(id, username, title, modifiedAt) {
+            return `
                         <!-- date/username 영역 -->
-                        <div class="metadata">
-                            <div class="date">
-                                ${modifiedAt}
-                            </div>
-                            <div id="${id}-username" class="username">
-                                ${username}
-                            </div>
-                        </div>
-                        <!-- contents 조회/수정 영역-->
-                        <div class="contents">
-                            <div id="${id}-contents" class="text">
-                                ${contents}
-                            </div>
-                            <div id="${id}-editarea" class="edit">
-                                <textarea id="${id}-textarea" class="te-edit" name="" id="" cols="30" rows="5"></textarea>
-                            </div>
-                        </div>
-                        <!-- 버튼 영역-->
-                        <div class="footer">
-                            <img id="${id}-edit" class="icon-start-edit" src="/images/edit.png" alt="" onclick="editPost('${id}')">
-                            <img id="${id}-delete" class="icon-delete" src="/images/delete.png" alt="" onclick="deleteOne('${id}')">
-                            <img id="${id}-submit" class="icon-end-edit" src="/images/done.png" alt="" onclick="submitEdit('${id}')">
-                        </div>
-                    </div>`;
+
+            <tr>
+                <th>${id}</th>
+                <th><a href="/api/post" </a>${title}</th>
+                <th>${username}</th>
+                <th>${modifiedAt}</th>
+    </tr>
+
+                 <!-- contents 조회/수정 영역-->
+
+                        <!-- 버튼 영역>-->`;
         }
 
         // 사용자가 내용을 올바르게 입력하였는지 확인합니다.
@@ -144,7 +133,7 @@
             top: 0px;
             width: 100%;
             height: 428px;
-            background-color: #339af0;
+            /*background-color: #339af0;*/
         }
 
         .background-body {
@@ -297,7 +286,7 @@
         }
 
         #cards-box {
-            margin-top: 12px;
+
         }
     </style>
 </head>
@@ -320,21 +309,19 @@
                 <th>작성자</th>
                 <th>작성일시</th>
 
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="post, loop : ${postList}">
-                <td th:text="${loop.count}"></td>
-                <td>
-                    <a th:href="@{|/post/content/${post.id}|}" th:text="${post.title}"></a>
-                </td>
-                <td th:text="${post.username}"></td>
-                <td th:text="${#temporals.format(post.createDate, 'yyyy-MM-dd HH:mm')}"></td>
-            </tr>
-            </tbody>
-        </table>
+    </tr>
+
+    </thead>
+            <tbody id="cards-box"></tbody>
+
+</table>
+
     </div>
+    <button type="button" class="btn btn-link">글작성하러가기</button>
+</div>
 
 </body>
+
+
 
 </html>
