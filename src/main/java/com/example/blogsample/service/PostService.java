@@ -27,7 +27,9 @@ public class PostService {
 
         return id;
     }
-    public PostResponseDto findByID(long id){
+
+
+    public PostResponseDto findById(Long id){
         Post entity = postRepository.findById(id).orElseThrow(()-> new IllegalArgumentException("해당 게시글이 없습니다"));
 
         return new PostResponseDto(entity);

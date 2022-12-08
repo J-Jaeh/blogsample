@@ -1,5 +1,6 @@
 package com.example.blogsample.controller;
 
+import com.example.blogsample.dto.PostResponseDto;
 import com.example.blogsample.dto.PostSaveRequestDto;
 import com.example.blogsample.dto.PostUpdateRequestDto;
 import com.example.blogsample.service.PostService;
@@ -20,7 +21,7 @@ public class PostController {
         return postService.update(id,requestDto);
     }
     @GetMapping("/api/posts/{id}")
-    public PostSaveRequestDto findByID (@PathVariable Long id){
+    public PostResponseDto findById (@PathVariable Long id){
         return postService.findById(id);
     }
 }
