@@ -1,5 +1,6 @@
 package com.example.blogsample.entity;
 
+import com.example.blogsample.dto.PostSaveRequestDto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,28 +12,29 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class Post extends Timestamped {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column
     private String title;
 
-    @Column(nullable = false)
+    @Column
     private String username;
 
-    @Column(nullable = false)
+    @Column
     private String contents;
 
-    @Column(nullable = false, length = 4)
-    private int password;
+    @Column
+    private Integer password;
 
-    @Builder
-    public Post(String title, String username, String contents, int password){
-        this.title = title;
-        this.username = username;
-        this.contents = contents;
-        this.password = password;
+
+    public Post(PostSaveRequestDto requestDto) {
+        this.title = requestDto.getTitle();
+        this.username = requestDto.getUsername();
+        this.contents = requestDto.getContents();
+        this.password = requestDto.getPassword();
     }
+
     public void update(String title, String contents){
         this.title =title;
         this.contents=contents;

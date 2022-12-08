@@ -13,6 +13,30 @@
             getMessages();
         })
 
+        // 메모를 불러와서 보여줍니다.
+        function getMessages() {
+            // 1. 기존 메모 내용을 지웁니다.
+            $('#cards-box').empty();
+
+            // 2. 메모 목록을 불러와서 HTML로 붙입니다.
+            $.ajax({
+                type: "GET",
+                url: "/api/memos",
+                data: {},
+                success: function (response) {
+                    for (let i = 0; i < response.length; i++) {
+                        let message = response[i];
+                        let id = message['id'];
+                        let username = message['username'];
+                        let title = message['title'];
+                        let modifiedAt = message['modifiedAt'];
+                        addHTML(id, username, title, modifiedAt);
+                    }
+                }
+            });
+        }
+
+
         // 메모 하나를 HTML로 만들어서 body 태그 내 원하는 곳에 붙입니다.
         function addHTML(id, username, contents, modifiedAt) {
             let tempHtml = makeMessage(id, username, contents, modifiedAt);
@@ -299,12 +323,13 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="question, loop : ${questionList}">
+            <tr th:each="post, loop : ${postList}">
                 <td th:text="${loop.count}"></td>
                 <td>
-                    <a th:href="@{|/question/detail/${question.id}|}" th:text="${question.subject}"></a>
+                    <a th:href="@{|/post/content/${post.id}|}" th:text="${post.title}"></a>
                 </td>
-                <td th:text="${#temporals.format(question.createDate, 'yyyy-MM-dd HH:mm')}"></td>
+                <td th:text="${post.username}"></td>
+                <td th:text="${#temporals.format(post.createDate, 'yyyy-MM-dd HH:mm')}"></td>
             </tr>
             </tbody>
         </table>

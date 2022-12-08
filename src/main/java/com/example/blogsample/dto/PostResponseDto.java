@@ -1,4 +1,4 @@
-package com.example.blogsample.dto;
+/*package com.example.blogsample.dto;
 
 import com.example.blogsample.entity.Post;
 import lombok.Getter;
@@ -9,13 +9,15 @@ public class PostResponseDto {
     private String title;
     private String content;
     private String user;
-    private int password;
+    private Integer password;
 
     public PostResponseDto(Post entity) {
-        this.id = id;
-        this.title = title;
-        this.content = content;
-        this.user = user;
-        this.password = password;
+        this.id = entity.getId();
+        this.title = entity.getTitle();
+        this.content = entity.getContents();
+        this.user = entity.getUsername();
+        this.password = entity.getPassword();
     }
 }
+
+ */

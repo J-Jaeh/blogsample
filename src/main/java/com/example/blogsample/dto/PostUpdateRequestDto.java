@@ -1,4 +1,4 @@
-package com.example.blogsample.dto;
+/*package com.example.blogsample.dto;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -16,4 +16,5 @@ public class PostUpdateRequestDto {
         this.content = content;
     }
 }
+*/
 
