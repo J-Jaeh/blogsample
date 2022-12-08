@@ -33,4 +33,8 @@ public class Post extends Timestamped {
         this.contents = contents;
         this.password = password;
     }
+    public void update(String title, String contents){
+        this.title =title;
+        this.contents=contents;
+    }
 }
