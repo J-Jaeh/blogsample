@@ -1,5 +1,6 @@
 package com.example.blogsample.entity;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -14,6 +15,9 @@ public class Post extends Timestamped {
     private Long id;
 
     @Column(nullable = false)
+    private String title;
+
+    @Column(nullable = false)
     private String username;
 
     @Column(nullable = false)
@@ -21,4 +25,12 @@ public class Post extends Timestamped {
 
     @Column(nullable = false, length = 4)
     private int password;
+
+    @Builder
+    public Post(String title, String username, String contents, int password){
+        this.title = title;
+        this.username = username;
+        this.contents = contents;
+        this.password = password;
+    }
 }

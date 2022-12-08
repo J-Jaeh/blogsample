@@ -13,6 +13,4 @@ public class PostController {
         return new ModelAndView("index");
     }    //ModelAndView라는 객체에 데이터도 넣어줄수 있고 templates의 html파일 반환할수있다.!
 
-
-
 }
