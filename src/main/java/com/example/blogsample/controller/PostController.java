@@ -47,14 +47,21 @@ public class PostController {
         return postService.getPost();
     }*/
 
-    @GetMapping(value = "/api/post/{id}")
-    public ModelAndView detail(@PathVariable("id") Integer id) { //이방법이 아닌가보다 ... 파라미터가없으면 되는데 있으니까 안되네 물어봐야겠다.
-        return new ModelAndView("post_detail");
+    /* @GetMapping(value = "/api/post/{id}")
+     public String detail(Model model, @PathVariable("id") Integer id) { //이방법이 아닌가보다 ... 파라미터가없으면 되는데 있으니까 안되네 물어봐야겠다.
+         return "post_detail";
 
-    }
+     }
 
-    @GetMapping("/api/post")
-    public PostResponseDto getPosting(@RequestParam Long id) {
-        return postService.getPosting(id);
+     /*@GetMapping("/api/post")
+     public String getPosting(Model model, Long id) {
+         model.addAttribute("posting",postService.getPosting(id));
+         return "posting";
+     }*/
+    @GetMapping("/post/{id}")
+    public String detail(@PathVariable("id") Long id, Model model) {
+        PostResponseDto postResponseDto = postService.getPosting(id);
+        model.addAttribute("post", postResponseDto);
+        return "post/post_detail.html";
     }
 }

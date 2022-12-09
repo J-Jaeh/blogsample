@@ -51,7 +51,7 @@
 
             <tr>
                 <th>${id}</th>
-                <th><a href="/api/post" </a>${title}</th>
+                <th><a href="/post/{id}" </a>${title}</th>
                 <th>${username}</th>
                 <th>${modifiedAt}</th>
     </tr>
@@ -317,7 +317,7 @@
 </table>
 
     </div>
-    <button type="button" class="btn btn-link">글작성하러가기</button>
+  <a href="/api"> <button type="button" class="btn btn-dark" >글작성하러가기 </button> </a>
 </div>
 
 </body>
